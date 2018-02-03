@@ -1,4 +1,4 @@
-﻿namespace MegaDesk_3_MikeSummers
+﻿namespace MegaDesk_4_MikeSummers
 {
     partial class AddQuote
     {
@@ -37,14 +37,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.widthInput = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.customerNameTextBox = new System.Windows.Forms.TextBox();
+            this.WidthTextBox = new System.Windows.Forms.TextBox();
+            this.DepthTextBox = new System.Windows.Forms.TextBox();
             this.GetQuoteBtn = new System.Windows.Forms.Button();
             this.widthErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.DesktopMaterialComboBox = new System.Windows.Forms.ComboBox();
+            this.NumDrawersComboBox = new System.Windows.Forms.ComboBox();
+            this.rushDaysDropDown = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.widthErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,74 +122,29 @@
             this.label7.TabIndex = 7;
             this.label7.Text = "Rush Days:";
             // 
-            // textBox1
+            // customerNameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(85, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 20);
-            this.textBox1.TabIndex = 8;
+            this.customerNameTextBox.Location = new System.Drawing.Point(85, 34);
+            this.customerNameTextBox.Name = "customerNameTextBox";
+            this.customerNameTextBox.Size = new System.Drawing.Size(186, 20);
+            this.customerNameTextBox.TabIndex = 8;
             // 
-            // widthInput
+            // WidthTextBox
             // 
-            this.widthInput.Location = new System.Drawing.Point(85, 60);
-            this.widthInput.Name = "widthInput";
-            this.widthInput.Size = new System.Drawing.Size(186, 20);
-            this.widthInput.TabIndex = 9;
-            this.widthInput.Validating += new System.ComponentModel.CancelEventHandler(this.validatingWidth);
-            this.widthInput.Validated += new System.EventHandler(this.validatedWidth);
+            this.WidthTextBox.Location = new System.Drawing.Point(85, 60);
+            this.WidthTextBox.Name = "WidthTextBox";
+            this.WidthTextBox.Size = new System.Drawing.Size(46, 20);
+            this.WidthTextBox.TabIndex = 9;
+            this.WidthTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.validatingWidth);
+            this.WidthTextBox.Validated += new System.EventHandler(this.validatedWidth);
             // 
-            // textBox3
+            // DepthTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(85, 86);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(186, 20);
-            this.textBox3.TabIndex = 10;
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.validateDepth);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "laminate",
-            "oak",
-            "rosewood",
-            "veneer",
-            "pine"});
-            this.listBox1.Location = new System.Drawing.Point(85, 116);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(187, 17);
-            this.listBox1.TabIndex = 11;
-            // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7"});
-            this.listBox2.Location = new System.Drawing.Point(85, 139);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(187, 17);
-            this.listBox2.TabIndex = 12;
-            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
-            // 
-            // listBox3
-            // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Items.AddRange(new object[] {
-            "14 (default - no rush)",
-            "7",
-            "5",
-            "3"});
-            this.listBox3.Location = new System.Drawing.Point(85, 162);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(187, 17);
-            this.listBox3.TabIndex = 13;
+            this.DepthTextBox.Location = new System.Drawing.Point(85, 86);
+            this.DepthTextBox.Name = "DepthTextBox";
+            this.DepthTextBox.Size = new System.Drawing.Size(46, 20);
+            this.DepthTextBox.TabIndex = 10;
+            this.DepthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.validateDepth);
             // 
             // GetQuoteBtn
             // 
@@ -199,23 +154,65 @@
             this.GetQuoteBtn.TabIndex = 14;
             this.GetQuoteBtn.Text = "Get Quote";
             this.GetQuoteBtn.UseVisualStyleBackColor = true;
+            this.GetQuoteBtn.Click += new System.EventHandler(this.AddDeskButton_Click);
             // 
             // widthErrorProvider
             // 
             this.widthErrorProvider.ContainerControl = this;
+            // 
+            // DesktopMaterialComboBox
+            // 
+            this.DesktopMaterialComboBox.FormattingEnabled = true;
+            this.DesktopMaterialComboBox.Location = new System.Drawing.Point(85, 112);
+            this.DesktopMaterialComboBox.Name = "DesktopMaterialComboBox";
+            this.DesktopMaterialComboBox.Size = new System.Drawing.Size(121, 21);
+            this.DesktopMaterialComboBox.TabIndex = 15;
+            this.DesktopMaterialComboBox.Text = "Select an Option";
+            // 
+            // NumDrawersComboBox
+            // 
+            this.NumDrawersComboBox.FormattingEnabled = true;
+            this.NumDrawersComboBox.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"});
+            this.NumDrawersComboBox.Location = new System.Drawing.Point(85, 135);
+            this.NumDrawersComboBox.Name = "NumDrawersComboBox";
+            this.NumDrawersComboBox.Size = new System.Drawing.Size(121, 21);
+            this.NumDrawersComboBox.TabIndex = 16;
+            this.NumDrawersComboBox.Text = "Select an Option";
+            // 
+            // rushDaysDropDown
+            // 
+            this.rushDaysDropDown.FormattingEnabled = true;
+            this.rushDaysDropDown.Items.AddRange(new object[] {
+            "14 (default - no rush)",
+            "7",
+            "5",
+            "3"});
+            this.rushDaysDropDown.Location = new System.Drawing.Point(85, 162);
+            this.rushDaysDropDown.Name = "rushDaysDropDown";
+            this.rushDaysDropDown.Size = new System.Drawing.Size(121, 21);
+            this.rushDaysDropDown.TabIndex = 17;
+            this.rushDaysDropDown.Text = "Select an Option";
             // 
             // AddQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.rushDaysDropDown);
+            this.Controls.Add(this.NumDrawersComboBox);
+            this.Controls.Add(this.DesktopMaterialComboBox);
             this.Controls.Add(this.GetQuoteBtn);
-            this.Controls.Add(this.listBox3);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.widthInput);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.DepthTextBox);
+            this.Controls.Add(this.WidthTextBox);
+            this.Controls.Add(this.customerNameTextBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -225,6 +222,7 @@
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.CancelAddQuote);
             this.Name = "AddQuote";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddQuote";
             ((System.ComponentModel.ISupportInitialize)(this.widthErrorProvider)).EndInit();
             this.ResumeLayout(false);
@@ -242,13 +240,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox widthInput;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.TextBox customerNameTextBox;
+        private System.Windows.Forms.TextBox WidthTextBox;
+        private System.Windows.Forms.TextBox DepthTextBox;
         private System.Windows.Forms.Button GetQuoteBtn;
         private System.Windows.Forms.ErrorProvider widthErrorProvider;
+        private System.Windows.Forms.ComboBox DesktopMaterialComboBox;
+        private System.Windows.Forms.ComboBox NumDrawersComboBox;
+        private System.Windows.Forms.ComboBox rushDaysDropDown;
     }
 }

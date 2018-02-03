@@ -1,6 +1,6 @@
-﻿namespace MegaDesk_3_MikeSummers
+﻿namespace MegaDesk_4_MikeSummers
 {
-    partial class DisplayQuote
+    partial class ViewAllQuotes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CancelDisplayQuote = new System.Windows.Forms.Button();
+            this.CancelViewAllQuotes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // CancelDisplayQuote
+            // CancelViewAllQuotes
             // 
-            this.CancelDisplayQuote.Location = new System.Drawing.Point(107, 214);
-            this.CancelDisplayQuote.Name = "CancelDisplayQuote";
-            this.CancelDisplayQuote.Size = new System.Drawing.Size(75, 23);
-            this.CancelDisplayQuote.TabIndex = 0;
-            this.CancelDisplayQuote.Text = "Cancel";
-            this.CancelDisplayQuote.UseVisualStyleBackColor = true;
-            this.CancelDisplayQuote.Click += new System.EventHandler(this.CancelDisplayQuote_Click);
+            this.CancelViewAllQuotes.Location = new System.Drawing.Point(100, 226);
+            this.CancelViewAllQuotes.Name = "CancelViewAllQuotes";
+            this.CancelViewAllQuotes.Size = new System.Drawing.Size(75, 23);
+            this.CancelViewAllQuotes.TabIndex = 0;
+            this.CancelViewAllQuotes.Text = "Cancel";
+            this.CancelViewAllQuotes.UseVisualStyleBackColor = true;
+            this.CancelViewAllQuotes.Click += new System.EventHandler(this.CancelViewAllQuotes_Click);
             // 
-            // DisplayQuote
+            // ViewAllQuotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.CancelDisplayQuote);
-            this.Name = "DisplayQuote";
-            this.Text = "DisplayQuote";
+            this.Controls.Add(this.CancelViewAllQuotes);
+            this.Name = "ViewAllQuotes";
+            this.Text = "ViewAllQuotes";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button CancelDisplayQuote;
+        private System.Windows.Forms.Button CancelViewAllQuotes;
     }
 }
