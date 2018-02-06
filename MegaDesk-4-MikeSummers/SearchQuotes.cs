@@ -54,9 +54,9 @@ namespace MegaDesk_4_MikeSummers
             string[] text = System.IO.File.ReadAllLines("quotes.txt");
             foreach (string x in text)
             {
-                if (x.Equals(whichMaterial))
+                if (x.Contains(whichMaterial))
                 {
-                    readText.Text = "hello";
+                    readText.Items.Add(x);
                 }
             }
         }

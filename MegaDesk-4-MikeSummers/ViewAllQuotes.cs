@@ -15,7 +15,14 @@ namespace MegaDesk_4_MikeSummers
         public ViewAllQuotes()
         {
             InitializeComponent();
+            string[] text = System.IO.File.ReadAllLines("quotes.txt");
+            foreach (string x in text)
+            {
+                showAllQuotes.Items.Add(x);
+            }
         }
+
+
 
         private void CancelViewAllQuotes_Click(object sender, EventArgs e)
         {
