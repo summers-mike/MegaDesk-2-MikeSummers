@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+
 
 namespace MegaDesk_4_MikeSummers
 {
@@ -84,7 +86,11 @@ namespace MegaDesk_4_MikeSummers
             //
             //int[,] rushOrderPrices = GetRushOrderPrices(); // call function that reads in price chart
             // define 2d arrya here - don't go to file for now.
-            int[,] rushOrderPrices = new int[,] { { 60, 70, 80 }, { 40, 50, 60 }, { 30, 30, 40 } };
+            // original code from 1.1:
+            //int[,] rushOrderPrices = new int[,] { { 60, 70, 80 }, { 40, 50, 60 }, { 30, 35, 40 } };
+            // updated code for ver 2:
+            int[,] rushOrderPrices = GetRushOrderPrices();
+
             switch (RushDays)
             {
                 case RUSH1:
@@ -134,21 +140,25 @@ namespace MegaDesk_4_MikeSummers
             return rushCost;
         }
 
+
         // According to video, this is for MegaDesk 2 - Week 5.
         // bin/Debug/rushOrderPrices.txt content:
-        // each on their own line: 60, 70, 80, 40, 50, 60, 30, 30, 40  (no commas)
-        /*
+        // each on their own line: 60, 70, 80, 40, 50, 60, 30, 35, 40  (no commas)
+        
         public int[,] GetRushOrderPrices ()
         {
             int[,] rushOrderPrices = new int[3, 3];
             try
             {
-                string[] lines = FileStyleUriParser.ReadAllLines("rushOrderPrices.txt");
+                string[] lines = System.IO.File.ReadAllLines("rushOrderPrices.txt");
                 int readLineCount = 0;
-                for (int i=0; i<3; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    rushOrderPrices[i, j] = int.Parse(lines[readLineCount]);
-                    readLineCount++;
+                    for (int j = 0; j < 3; j++)
+                    {
+                        rushOrderPrices[i, j] = int.Parse(lines[readLineCount]);
+                        readLineCount++;
+                    }
                 }
             }
             catch (Exception e)
@@ -157,8 +167,9 @@ namespace MegaDesk_4_MikeSummers
             }
             return rushOrderPrices;
         }
-        */
+
         
+
 
 
 

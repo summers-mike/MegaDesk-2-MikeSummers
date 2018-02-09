@@ -51,6 +51,7 @@ namespace MegaDesk_4_MikeSummers
 
         public void DoTheSearch(string whichMaterial)
         {
+            /*
             string[] text = System.IO.File.ReadAllLines("quotes.txt");
             foreach (string x in text)
             {
@@ -59,6 +60,32 @@ namespace MegaDesk_4_MikeSummers
                     readText.Items.Add(x);
                 }
             }
+            */
+
+            string path = @"quotes.json";
+            if (File.Exists(path))
+            {
+
+                using (StreamReader r = new StreamReader(path))
+                {
+                    string[] text = System.IO.File.ReadAllLines(path);
+                    foreach (string x in text)
+                    {
+                        //showAllQuotes.Items.Add(x);
+                        if (x.Contains(whichMaterial))
+                        {
+                            readText.Items.Add(x);
+                        }
+                    }
+                    r.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Could not find a file");
+            }
+
+
         }
 
 

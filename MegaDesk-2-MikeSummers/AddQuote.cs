@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -61,6 +64,19 @@ namespace MegaDesk_4_MikeSummers
             }
         }
 
+        class DeskInfo
+        {
+            public String CustomerName { get; set; }
+            public decimal DeskWidth { get; set; }
+            public decimal DeskDepth { get; set; }
+            public int Drawers { get; set; }
+            public String DesktopMaterial{ get; set; }
+            public int RushOrderDays { get; set; }
+            public decimal DeskQuoteTotal { get; set; }
+            public DateTime DateTime { get; set; }
+        }
+
+
         private void AddDeskButton_Click(object sender, EventArgs e)
         {
             // Input
@@ -103,6 +119,9 @@ namespace MegaDesk_4_MikeSummers
             try
             {
                 // build output string csv
+
+                // Original code for ver 1.1
+
                 var DeskRecord = CustomerName + ", " + DateTime.Now + ", " + DeskWidth + ", "
                                  + DeskDepth + ", " + Drawers + ", " + DesktopMaterial + ", "
                                  + RushOrderDays + ", " + DeskQuoteTotal;
@@ -112,12 +131,104 @@ namespace MegaDesk_4_MikeSummers
                 {
                     sw.WriteLine(DeskRecord);
                 }
+
                 // MORE TO GO HERE??
             }
-            catch
+            catch (Exception ex)
             {
-                // might need to add exceptions here
+                MessageBox.Show(ex.Message, "Error creating file");
             }
+
+            try
+            {
+
+                //json code here...
+
+
+                DeskInfo deskinfo = new DeskInfo();
+                deskinfo.CustomerName = CustomerName;
+                deskinfo.DeskDepth = DeskDepth;
+                deskinfo.DeskWidth = DeskWidth;
+                deskinfo.DesktopMaterial = DesktopMaterial.ToString();
+                deskinfo.Drawers = Drawers;
+                deskinfo.RushOrderDays = RushOrderDays;
+                deskinfo.DateTime = DateTime.Now;
+                deskinfo.DeskQuoteTotal = DeskQuoteTotal;
+
+
+
+                JsonSerializer serializer = new JsonSerializer();
+                //serializer.Converters.Add(new JavaScriptDateTimeConverter());
+
+                serializer.NullValueHandling = NullValueHandling.Ignore;
+
+                string path = @"quotes.json";
+                if (File.Exists(path))
+                {
+                    StreamWriter sw = new StreamWriter(path, true);
+
+                    using (JsonWriter writer = new JsonTextWriter(sw))
+                    {
+                        serializer.Serialize(writer, deskinfo);
+                    }
+
+                    //myJson.WriteLine(deskinfo);
+                    sw.Close();
+                }
+                else
+                {
+                    //using (StreamWriter sw = new StreamWriter(path))
+                    StreamWriter sw = new StreamWriter(path);
+
+                    using (JsonWriter writer = new JsonTextWriter(sw))
+                    {
+                        serializer.Serialize(writer, deskinfo);
+                    }
+                    sw.Close();
+                }
+
+                
+
+                /*
+                MemoryStream stream1 = new MemoryStream();
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DeskInfo));
+                ser.WriteObject(stream1, deskinfo);
+                */
+
+
+                //var recordToAdd = new JObject();
+                //recordToAdd["CustomerName"] = deskinfo.CustomerName;
+                //recordToAdd["Desk Width"] = DeskWidth;
+
+                //var serializeMe = JsonConvert.SerializeObject(Formatting.Indented);
+
+                //File.WriteAllText(@"quotes.json", serializeMe);
+
+
+
+                /*
+                var getJsonInfo = File.ReadAllText("quotes.json");
+
+                var jsonArray = JArray.Parse(getJsonInfo);
+
+                var recordToAdd = new JObject();
+                recordToAdd["CustomerName"] = CustomerName;
+                recordToAdd["Desk Width"] = DeskWidth;
+                jsonArray.Add(recordToAdd);
+
+                var serializeMe = JsonConvert.SerializeObject(Formatting.Indented);
+
+                File.WriteAllText(@"quotes.json", serializeMe);
+                */
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error creating JSON file");
+            }
+
+
 
             // Show confirmation page on new screen
             var MainMenu = (MainMenu)Tag; // need to bring along a reference tag to the main menu form
@@ -137,13 +248,6 @@ namespace MegaDesk_4_MikeSummers
             ShowMainMenu.Show();
             this.Close();
         }
-
-
-
-        
-
-
-
 
 
 
