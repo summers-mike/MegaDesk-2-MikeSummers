@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.CancelAddQuote = new System.Windows.Forms.Button();
-            this.dateLabel = new System.Windows.Forms.Label();
             this.clientNameLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,7 +44,9 @@
             this.DesktopMaterialComboBox = new System.Windows.Forms.ComboBox();
             this.NumDrawersComboBox = new System.Windows.Forms.ComboBox();
             this.rushDaysDropDown = new System.Windows.Forms.ComboBox();
+            this.depthErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.widthErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.depthErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // CancelAddQuote
@@ -57,16 +58,6 @@
             this.CancelAddQuote.Text = "Cancel";
             this.CancelAddQuote.UseVisualStyleBackColor = true;
             this.CancelAddQuote.Click += new System.EventHandler(this.CancelAddQuote_Click);
-            // 
-            // dateLabel
-            // 
-            this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(12, 9);
-            this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(33, 13);
-            this.dateLabel.TabIndex = 1;
-            this.dateLabel.Text = "Date:";
-            this.dateLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // clientNameLabel
             // 
@@ -144,7 +135,8 @@
             this.DepthTextBox.Name = "DepthTextBox";
             this.DepthTextBox.Size = new System.Drawing.Size(46, 20);
             this.DepthTextBox.TabIndex = 10;
-            this.DepthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.validateDepth);
+            this.DepthTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.validatingDepth);
+            this.DepthTextBox.Validated += new System.EventHandler(this.validatedDepth);
             // 
             // GetQuoteBtn
             // 
@@ -201,6 +193,10 @@
             this.rushDaysDropDown.TabIndex = 17;
             this.rushDaysDropDown.Text = "Select an Option";
             // 
+            // depthErrorProvider
+            // 
+            this.depthErrorProvider.ContainerControl = this;
+            // 
             // AddQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,12 +215,12 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.clientNameLabel);
-            this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.CancelAddQuote);
             this.Name = "AddQuote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddQuote";
             ((System.ComponentModel.ISupportInitialize)(this.widthErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.depthErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,7 +229,6 @@
         #endregion
 
         private System.Windows.Forms.Button CancelAddQuote;
-        private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label clientNameLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -248,5 +243,6 @@
         private System.Windows.Forms.ComboBox DesktopMaterialComboBox;
         private System.Windows.Forms.ComboBox NumDrawersComboBox;
         private System.Windows.Forms.ComboBox rushDaysDropDown;
+        private System.Windows.Forms.ErrorProvider depthErrorProvider;
     }
 }
